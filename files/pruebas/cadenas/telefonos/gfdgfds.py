@@ -75,6 +75,7 @@ while not exi:
                 print (agenda)
 
 
+gjgjgkg
             elif opc==3:
                 flg_menu00=False
                 flg_menu03=True
