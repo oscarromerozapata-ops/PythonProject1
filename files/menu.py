@@ -1,0 +1,7 @@
+print("*" * 30)
+print(str("comida").center(30))
+print("*" * 30)
+print(str("Nombre").ljust(15),str("precio").rjust(14))
+print(str("Entrecot").ljust(15),str("23,35").rjust(14))
+print(str("Callos").ljust(15),str("15,1").rjust(14))
+print(str("Patatass Bravas").ljust(15),str("9,5").rjust(14))
