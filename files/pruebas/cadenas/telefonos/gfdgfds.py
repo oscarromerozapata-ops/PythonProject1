@@ -10,6 +10,7 @@ flg_menu00=True
 flg_menu03=False
 flg_menu05=False
 opciones=""
+
 print(datos)
 while not exi:
     while flg_menu00:
@@ -72,6 +73,7 @@ while not exi:
                 agenda=agenda+contacto+";"
                 contacto=""
                 print (agenda)
+
 
             elif opc==3:
                 flg_menu00=False
