@@ -1,5 +1,3 @@
-from msvcrt import kbhit
-
 agenda="Pedro*Balmes 27*111111111#333425325#+4534553453#;Jacinta*Ardur 32*333333333#657483746#;Andres*Arriba 1**444444444#374658365#;Anabel*Derecha 3**222222222#465768347#;"
 contacto=""
 datos=""
@@ -51,20 +49,17 @@ while not exi:
                             final = tfns.find("#", inicio)
                             datos = datos +"{:20}{:20}{:>20}\n".format("", "", tfns[inicio:final])
                     datos = datos + "-"*60+"\n"
-                datos = datos + str(j + 2) + ")Salir\n"
-                salir = str(j + 2)
                 print(datos)
                 datos=""
                 input("Enter to continue")
             elif opc==2:
-                contacto = input("introduce nombre del contacto")
-                contacto = contacto + "*"
-                contacto = contacto+input("introduce una dirección")
-                contacto = contacto + "*"
+                nombre = input("introduce nombre del contacto")
+                direccion = input("introduce una dirección")
                 tel = True
+                numero=""
                 while tel:
-                    contacto = contacto+input("introduce un numero de telefono")
-                    contacto=contacto + "#"
+                    numero = numero+input("introduce un numero de telefono")
+                    numero=numero + "#"
                     opcion=input("Deseas agregar otro numero de telefono S/N")
                     if opcion=="N":
                         tel=False
@@ -72,19 +67,16 @@ while not exi:
                         tel=True
                     else:
                         print("introduce S/N")
-                agenda=agenda+contacto+";"
+                opc=input("Deseas agregar a {} de {} con el numero {} a tu lista de contactos? S/N".format(nombre, direccion,numero))
+                if opc=="S":
+                    contacto = nombre + "*"+direccion+"*"+numero+";"
+                    agenda=agenda+contacto
                 contacto=""
                 print (agenda)
-
-
             elif opc==3:
                 flg_menu00=False
                 flg_menu03=True
             elif opc==4:
-                inicio3 = agenda.find("Jacinta")
-                final3 = agenda.find(";", inicio3)
-
-                agenda = agenda[:inicio3] + agenda[final3 + 1:]
                 for j in range(0, agenda.count(";")):
                     if j == 0:
                         inicio2 = 0
@@ -104,16 +96,22 @@ while not exi:
                         if i == 0:
                             inicio = 0
                             final = tfns.find("#")
-                            datos = datos + str(j + 1) + ")" + "{:20}{:20}{:>20}\n".format(nombre, direccion,
-                                                                                           tfns[inicio:final])
+                            datos = datos + str(j+1)+")"+"{:20}{:20}{:>20}\n".format(nombre, direccion, tfns[inicio:final])
                         else:
                             inicio = final + 1
                             final = tfns.find("#", inicio)
-                            datos = datos + "{:20}{:20}{:>20}\n".format("", "", tfns[inicio:final])
-                    datos = datos + "-" * 60 + "\n"
+                            datos = datos +"{:20}{:20}{:>20}\n".format("", "", tfns[inicio:final])
+                    datos = datos + "-"*60+"\n"
                 datos = datos + str(j + 2) + ")Salir\n"
                 salir = str(j + 2)
                 print(datos)
+                opc=int(input("Cual contacto desea eliminar"))
+                if not opc==int(salir):
+                    inicio3 = agenda.find(";",opc)
+                    final3 = agenda.find(";", inicio3)
+                    agenda = agenda[:inicio3] + agenda[final3 + 1:]
+                print(agenda)
+                datos=""
             elif opc==5:
                 flg_menu00=False
                 flg_menu05=True
