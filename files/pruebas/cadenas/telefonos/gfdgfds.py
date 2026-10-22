@@ -1,3 +1,5 @@
+from msvcrt import kbhit
+
 agenda="Pedro*Balmes 27*111111111#333425325#+4534553453#;Jacinta*Ardur 32*333333333#657483746#;Andres*Arriba 1**444444444#374658365#;Anabel*Derecha 3**222222222#465768347#;"
 contacto=""
 datos=""
@@ -75,7 +77,6 @@ while not exi:
                 print (agenda)
 
 
-gjgjgkg
             elif opc==3:
                 flg_menu00=False
                 flg_menu03=True
