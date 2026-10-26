@@ -159,6 +159,7 @@ while not exi:
                         print(agenda)
                         input("Enter to continue")
             elif opc==2:
+                nueva_agenda=""
                 for j in range(0, agenda.count(";")):
                     if j == 0:
                         inicio2 = 0
@@ -208,6 +209,9 @@ while not exi:
                                 inicio2 = final2 + 1
                                 final2 = agenda.find(";", inicio2)
                             contacto = agenda[inicio2:final2]
+                            if j+1==opc:
+                                contacto=contacto+nuevo_tel+"#"
+                            nueva_agenda = nueva_agenda+contacto + ";"
                             primer_separador = contacto.find("*")
                             segundo_separador = contacto.find("*", primer_separador + 1)
                             nombre = contacto[:primer_separador]
@@ -223,13 +227,14 @@ while not exi:
                                     inicio = final + 1
                                     final = tfns.find("#", inicio)
                                     datos = datos + "{:20}{:20}{:>20}\n".format("", "", tfns[inicio:final])
-                                    if j + 1 == opc:
-                                        datos = datos + "{:20}{:20}{:>20}\n".format("", "", nuevo_tel)
                             datos = datos + "-" * 60 + "\n"
                     print(datos)
+                    agenda = nueva_agenda
+                    print(agenda)
                     datos = ""
                     input()
             elif opc==3:
+                nueva_agenda = ""
                 for j in range(0, agenda.count(";")):
                     if j == 0:
                         inicio2 = 0
@@ -258,9 +263,8 @@ while not exi:
                 salir = str(j + 2)
                 print(datos)
                 datos = ""
-
                 opc = input("Cual contacto desea eliminar el telefono?")
-                nuevo_tel = input("cual telefono desea eliminar")
+                nuevo_tel = input("escribe el numero que desea borrar")
                 if not opc.isdigit():
                     print("Error introduce una opción numerica")
                 elif not int(opc) in range(1, agenda.count(";") + 2):
@@ -285,36 +289,35 @@ while not exi:
                             nombre = contacto[:primer_separador]
                             direccion = contacto[primer_separador + 1:segundo_separador]
                             tfns = contacto[segundo_separador + 1:]
-                            if opc==j+1:
+                            if j + 1 == opc:
+                                inicio4=contacto.find(nuevo_tel)
                                 for i in range(0, tfns.count("#")):
                                     if i == 0:
                                         inicio = 0
                                         final = tfns.find("#")
-                                        if not nuevo_tel in tfns[inicio:final]:
-                                            datos = datos + str(j + 1) + ")" + "{:20}{:20}{:>20}\n".format(nombre, direccion,tfns[inicio:final])
-                                        else:
-                                            datos = datos + str(j + 1) + ")" + "{:20}{:20}{:>20}\n".format(nombre,direccion,"")
-
                                     else:
                                         inicio = final + 1
                                         final = tfns.find("#", inicio)
-                                        if not nuevo_tel in tfns[inicio:final]:
-                                            datos = datos + "{:20}{:20}{:>20}\n".format("", "", tfns[inicio:final])
-                            else:
-                                for i in range(0, tfns.count("#")):
-                                    if i == 0:
-                                        inicio = 0
-                                        final = tfns.find("#")
-                                        datos = datos + str(j + 1) + ")" + "{:20}{:20}{:>20}\n".format(nombre, direccion,tfns[inicio:final])
-                                    else:
-                                        inicio = final + 1
-                                        final = tfns.find("#", inicio)
-                                        datos = datos + "{:20}{:20}{:>20}\n".format("", "", tfns[inicio:final])
+                                    if nuevo_tel in tfns[inicio:final]:
+                                        tfns = tfns[:inicio] + tfns[final+1:]
+                            contacto=nombre+"*"+direccion+"*"+tfns
+                            nueva_agenda = nueva_agenda + contacto + ";"
+                            for i in range(0, tfns.count("#")):
+                                if i == 0:
+                                    inicio = 0
+                                    final = tfns.find("#")
+                                    datos = datos + str(j + 1) + ")" + "{:20}{:20}{:>20}\n".format(nombre, direccion,
+                                                                                                   tfns[inicio:final])
+                                else:
+                                    inicio = final + 1
+                                    final = tfns.find("#", inicio)
+                                    datos = datos + "{:20}{:20}{:>20}\n".format("", "", tfns[inicio:final])
                             datos = datos + "-" * 60 + "\n"
                     print(datos)
+                    agenda = nueva_agenda
+                    print(agenda)
                     datos = ""
                     input()
-                print("")
             elif opc==4:
                 flg_menu00 = True
                 flg_menu03 = False
