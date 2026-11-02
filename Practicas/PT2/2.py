@@ -8,5 +8,5 @@ while not salir:
     else:
         numeros=numeros+num
         contador=contador+1
-mitjana=numeros/contador
+mitjana=numero/contador
 print("mitjana aritmetica: ", mitjana)
