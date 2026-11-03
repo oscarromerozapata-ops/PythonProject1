@@ -70,6 +70,9 @@ while not salir:
             if opc==5:
                 flg_00=False
                 flg_05=True
+            if opc==6:
+                flg_00=False
+                salir=True
     while flg_03:
         for i in range(len(agenda)):
             nom = agenda[i][0]
@@ -141,9 +144,6 @@ while not salir:
                                 tfns_originales.pop(opc_del_tfn-1)
                 if opc == 4:
                     flg_edit_contact=False
-
-
-
     while flg_04:
         menu = "Delete contact".center(40, "*") + "\n"
         for i in range(len(agenda)):
