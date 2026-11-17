@@ -6,13 +6,11 @@ usuarios = {"47474747X":usuario1,"24536425T":usuario2,"76767676H":usuario3}
 
 cabecera="{:12}{:25}{:20}{:20}{:15}\n".format("DNI","nombre","direccion","tfn","Total Compras")
 datos=""
-
 for dni in usuarios:
     suma_compras=0
     for compra in usuarios[dni]["compras"]:
         suma_compras+=compra
     datos=datos+"{:12}{:25}{:20}{:20}{:15}\n".format(dni,usuarios[dni]["nombre"],usuarios[dni]["direccion"],usuarios[dni]["tfn"][0],str(suma_compras))
-
     str(suma_compras)
     if len(usuarios[dni]["tfn"])>1:
         for i in range(1,len(usuarios[dni]["tfn"])):
